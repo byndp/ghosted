@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+.venv/
+__pycache__/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+
+# Claude — local/generated files only (settings.json, rules/, skills/, agents/ should be committed)
+.claude/settings.local.json
+.claude/projects/
+CLAUDE.local.md
+
+# Build & deploy
+.vercel/
+dist/
+build/
+*.egg-info/
+.next/
+
+# Ghosted specifics
+.wrangler/
+.dev.vars
+# VAPID / wrangler --secrets-file files (scripts/gen_vapid.mjs), wherever they are written
+.secrets.env
+*.secrets.env
+*.local.toml
+notify/remote-worker/node_modules/
+# Session transcripts and any copy of them never enter this repo (privacy)
+tests/fixtures/real/*.jsonl
+*.transcript.jsonl
+
+# Real-session manifest: private, lives in ~/.ghosted/fixtures/ (never commit it)
+tests/fixtures/real/

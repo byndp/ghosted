@@ -1,0 +1,73 @@
+#!/usr/bin/env python3
+"""ghosted: the Ghosted command line.
+
+Resolves this file's real path (so a symlink such as ~/.local/bin/ghosted -> <repo>/bin/ghosted works), puts
+the repo root first on sys.path and runs core.cli.main. Imports stay minimal here: `ghosted hook` runs
+on every Claude Code turn end and must start fast, so core.cli dispatches it before loading
+argparse or anything heavier.
+
+`ghosted hook` gets three process-level guarantees on top of core.hook (contract section 11): stdout
+and stderr point at /dev/null before anything is imported, a watchdog ends the process (status 0)
+after HOOK_WATCHDOG_SECONDS whatever it is doing (a stdin that never closes, say), and the exit
+status is 0 even when an import or the repo itself is broken. A hook must never print, block or
+fail a Claude session.
+"""
+from __future__ import annotations
+
+import os
+import sys
+
+HOOK_WATCHDOG_SECONDS = 10
+
+
+def _repo_root() -> str:
+    return os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+
+
+def _silence() -> None:
+    try:
+        fd = os.open(os.devnull, os.O_WRONLY)
+    except OSError:
+        return
+    for target in (1, 2):
+        try:
+            os.dup2(fd, target)
+        except OSError:
+            pass
+    if fd > 2:
+        os.close(fd)
+
+
+def _watchdog() -> None:
+    try:
+        import signal
+
+        signal.signal(signal.SIGALRM, lambda signum, frame: os._exit(0))
+        signal.alarm(HOOK_WATCHDOG_SECONDS)
+    except (ImportError, AttributeError, OSError, ValueError):
+        pass  # no SIGALRM on this platform: the hook still exits on its own
+
+
+def _hook(root: str) -> None:
+    _silence()
+    _watchdog()
+    try:
+        if not sys.path or sys.path[0] != root:
+            sys.path.insert(0, root)
+        from core import cli
+
+        cli.main(["hook"])
+    except BaseException:  # noqa: BLE001 - the hook exits 0 on every path
+        pass
+    sys.exit(0)
+
+
+if __name__ == "__main__":
+    _root = _repo_root()
+    if sys.argv[1:2] == ["hook"]:
+        _hook(_root)
+    if not sys.path or sys.path[0] != _root:
+        sys.path.insert(0, _root)
+    from core import cli  # noqa: E402  (after the sys.path fix, by design)
+
+    sys.exit(cli.main(sys.argv[1:]))

@@ -1,0 +1,29 @@
+{
+  "description": "Ghosted: records how each turn ended (Stop) and API-error ends (StopFailure). Async; never blocks, never prints.",
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3",
+            "args": ["${CLAUDE_PLUGIN_ROOT}/bin/ghosted", "hook"],
+            "async": true
+          }
+        ]
+      }
+    ],
+    "StopFailure": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3",
+            "args": ["${CLAUDE_PLUGIN_ROOT}/bin/ghosted", "hook"],
+            "async": true
+          }
+        ]
+      }
+    ]
+  }
+}

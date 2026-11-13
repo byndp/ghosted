@@ -1,0 +1,2065 @@
+{
+  "version": 1,
+  "vectors": [
+    {
+      "name": "no-triggers-no-digest",
+      "why": "09:15 Tue, in the digest window, no digest today. GS-0001 is due in 4 days (not T1-T3); GS-0002 reviews in 3 days; GS-0003 is an interrupted item created before yesterday's digest (not T4) with review in 6 days; GS-0004 is done; GS-0005 is snoozed to Thu, so it is neither reopened nor a digest item although it is due today. No trigger, so no digest.",
+      "now": "2026-10-06T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "home", "title": "home: water the plants", "owner": "me", "status": "open", "due_at": "2026-10-10", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0002", "kind": "decision", "project": "shop", "title": "shop: decide on the footer layout", "owner": "me", "status": "open", "due_at": null, "review_at": "2026-10-09", "snooze_until": null, "created_at": "2026-10-02T16:00:00Z"},
+        {"id": "GS-0003", "kind": "interrupted", "project": "orbit", "title": "orbit: session 10-05 ended on usage limit", "owner": "me", "status": "open", "due_at": null, "review_at": "2026-10-12", "snooze_until": null, "created_at": "2026-10-05T13:00:00Z"},
+        {"id": "GS-0004", "kind": "promise", "project": "home", "title": "home: return the library book", "owner": "me", "status": "done", "due_at": "2026-10-06", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0005", "kind": "promise", "project": "shop", "title": "shop: fix the checkout button", "owner": "me", "status": "snoozed", "due_at": "2026-10-06", "review_at": null, "snooze_until": "2026-10-08T09:00", "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T14:01:00Z", "finished_at": "2026-10-06T14:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": []
+      }
+    },
+    {
+      "name": "due-today-T1",
+      "why": "09:15. GS-0001 is open and due today (T1), so the digest goes out with it. GS-0002 is due today too but dismissed, and closed items never appear.",
+      "now": "2026-10-06T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "shop", "title": "shop: order the new display shelves", "owner": "me", "status": "open", "due_at": "2026-10-06", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0002", "kind": "promise", "project": "home", "title": "home: water the plants", "owner": "me", "status": "dismissed", "due_at": "2026-10-06", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T14:01:00Z", "finished_at": "2026-10-06T14:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"]}
+        ]
+      }
+    },
+    {
+      "name": "overdue-T2",
+      "why": "09:15. GS-0001 was due Sat 10-03, before today: overdue (T2).",
+      "now": "2026-10-06T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "home", "title": "home: return the library book", "owner": "me", "status": "open", "due_at": "2026-10-03", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T14:01:00Z", "finished_at": "2026-10-06T14:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"]}
+        ]
+      }
+    },
+    {
+      "name": "due-in-2-days-T3-and-3-days-excluded",
+      "why": "09:15 Tue. GS-0001 is due Thu 10-08 = today+2 (T3). GS-0002 is due Fri 10-09 = today+3, outside T3, so the digest carries GS-0001 only.",
+      "now": "2026-10-06T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "shop", "title": "shop: first newsletter goes out", "owner": "me", "status": "open", "due_at": "2026-10-08", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0002", "kind": "promise", "project": "shop", "title": "shop: fix the checkout button", "owner": "me", "status": "open", "due_at": "2026-10-09", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T14:01:00Z", "finished_at": "2026-10-06T14:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"]}
+        ]
+      }
+    },
+    {
+      "name": "due-in-3-days-no-trigger",
+      "why": "09:15 Tue. The only item is due today+3: no trigger, no digest.",
+      "now": "2026-10-06T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "shop", "title": "shop: fix the checkout button", "owner": "me", "status": "open", "due_at": "2026-10-09", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T14:01:00Z", "finished_at": "2026-10-06T14:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": []
+      }
+    },
+    {
+      "name": "new-interruption-since-last-digest-T4",
+      "why": "Previous digest sent 2026-10-05T14:15:30Z. GS-0001 (interrupted) was created at 20:40Z that day, after it: T4. GS-0002 (interrupted) was created on 10-04, before it: not T4, and its review is in the future. GS-0003 is a decision created after the digest, but T4 is for interrupted items only.",
+      "now": "2026-10-06T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "interrupted", "project": "orbit", "title": "orbit: session 10-05 ended on usage limit", "owner": "me", "status": "open", "due_at": null, "review_at": "2026-10-12", "snooze_until": null, "created_at": "2026-10-05T20:40:00Z"},
+        {"id": "GS-0002", "kind": "interrupted", "project": "inkwell", "title": "inkwell: session 10-04 ended on an open question", "owner": "me", "status": "open", "due_at": null, "review_at": "2026-10-11", "snooze_until": null, "created_at": "2026-10-04T18:00:00Z"},
+        {"id": "GS-0003", "kind": "decision", "project": "shop", "title": "shop: decide on the footer layout", "owner": "me", "status": "open", "due_at": null, "review_at": "2026-10-12", "snooze_until": null, "created_at": "2026-10-05T21:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T14:01:00Z", "finished_at": "2026-10-06T14:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"]}
+        ]
+      }
+    },
+    {
+      "name": "older-interruption-only-no-digest",
+      "why": "The only interrupted item was created before the previous digest's sent_at: not T4. Its review (10-11) is in the future. No digest.",
+      "now": "2026-10-06T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0002", "kind": "interrupted", "project": "inkwell", "title": "inkwell: session 10-04 ended on an open question", "owner": "me", "status": "open", "due_at": null, "review_at": "2026-10-11", "snooze_until": null, "created_at": "2026-10-04T18:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T14:01:00Z", "finished_at": "2026-10-06T14:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": []
+      }
+    },
+    {
+      "name": "interruption-created-at-the-digest-instant-is-not-new",
+      "why": "T4 needs created_at strictly after the previous digest's sent_at. Equal instants are not after.",
+      "now": "2026-10-06T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "interrupted", "project": "orbit", "title": "orbit: session 10-05 ended on usage limit", "owner": "me", "status": "open", "due_at": null, "review_at": "2026-10-12", "snooze_until": null, "created_at": "2026-10-05T14:15:30Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T14:01:00Z", "finished_at": "2026-10-06T14:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": []
+      }
+    },
+    {
+      "name": "t4-measures-from-the-latest-delivered-digest",
+      "why": "Digest rows: 10-04 (ok 1) and 10-05 (ok 0: the send failed, so nothing reached the phone). T4 measures from the latest delivered digest, 10-04 14:15:30Z. GS-0001 was created at 03:00Z on 10-05, after it (and before the failed one): T4. GS-0002 was created on 10-03, before the delivered digest: not T4, and its review (10-10) is in the future. The failed row still dedups its own day and counts in that day's budget; it just does not count as delivered.",
+      "now": "2026-10-06T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "interrupted", "project": "inkwell", "title": "inkwell: session 10-04 ended on an open question", "owner": "me", "status": "open", "due_at": null, "review_at": "2026-10-11", "snooze_until": null, "created_at": "2026-10-05T03:00:00Z"},
+        {"id": "GS-0002", "kind": "interrupted", "project": "orbit", "title": "orbit: session 10-03 ended on usage limit", "owner": "me", "status": "open", "due_at": null, "review_at": "2026-10-10", "snooze_until": null, "created_at": "2026-10-03T18:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-04T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-04", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-04"},
+        {"id": 2, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 0, "local_date": "2026-10-05"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T14:01:00Z", "finished_at": "2026-10-06T14:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"]}
+        ]
+      }
+    },
+    {
+      "name": "t4-no-delivered-digest-counts-as-never",
+      "why": "09:15 Tue. Digest rows exist for 10-04 and 10-05, but both sends failed (ok 0), so no digest ever reached the phone: as with no digest at all, every open interrupted item is T4, GS-0001 although it is old. Its review (10-05) was 1 day ago, not a multiple of 7. GS-0002 is due in 14 days: no trigger.",
+      "now": "2026-10-06T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "interrupted", "project": "orbit", "title": "orbit: session 09-28 ended on usage limit", "owner": "me", "status": "open", "due_at": null, "review_at": "2026-10-05", "snooze_until": null, "created_at": "2026-09-28T16:00:00Z"},
+        {"id": "GS-0002", "kind": "promise", "project": "home", "title": "home: water the plants", "owner": "me", "status": "open", "due_at": "2026-10-20", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-04T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-04", "item_ids": ["GS-0090"], "ok": 0, "local_date": "2026-10-04"},
+        {"id": 2, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 0, "local_date": "2026-10-05"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T14:01:00Z", "finished_at": "2026-10-06T14:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"]}
+        ]
+      }
+    },
+    {
+      "name": "first-ever-digest-any-open-interruption-T4",
+      "why": "No digest row has ever been recorded (the only notification is an advance), so every open interrupted item is T4: GS-0001 although it is old. Its review 09-27 is 9 days back (not a multiple of 7). GS-0002 is dismissed, GS-0003 is snoozed to Fri, GS-0004 is due in 14 days.",
+      "now": "2026-10-06T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "interrupted", "project": "orbit", "title": "orbit: session 09-20 ended on usage limit", "owner": "me", "status": "open", "due_at": null, "review_at": "2026-09-27", "snooze_until": null, "created_at": "2026-09-20T16:00:00Z"},
+        {"id": "GS-0002", "kind": "interrupted", "project": "inkwell", "title": "inkwell: session 09-25 ended on an open question", "owner": "me", "status": "dismissed", "due_at": null, "review_at": "2026-10-02", "snooze_until": null, "created_at": "2026-09-25T16:00:00Z"},
+        {"id": "GS-0003", "kind": "interrupted", "project": "shop", "title": "shop: session 10-02 ended on an open question", "owner": "me", "status": "snoozed", "due_at": null, "review_at": "2026-10-09", "snooze_until": "2026-10-09T09:00", "created_at": "2026-10-02T16:00:00Z"},
+        {"id": "GS-0004", "kind": "promise", "project": "home", "title": "home: water the plants", "owner": "me", "status": "open", "due_at": "2026-10-20", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-09-30T19:15:00Z", "kind": "advance", "dedup_key": "advance:GS-0090", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-09-30"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T14:01:00Z", "finished_at": "2026-10-06T14:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"]}
+        ]
+      }
+    },
+    {
+      "name": "t4-skips-interruptions-that-look-resolved",
+      "why": "09:15 Tue. The latest delivered digest went out 09-28 14:15:30Z, and all three interruptions were created after it. GS-0001 does not look resolved: T4. GS-0002 looks resolved (resumed, ended clean), so it is not new; its review (10-12) is in 6 days, so it has no trigger. GS-0003 looks resolved too, so not T4, but its review_at is today: looks_resolved only takes an item out of T4, so it is T6. Digest: GS-0001 (T4), GS-0003 (T6). Ignoring looks_resolved would give GS-0001, GS-0002, GS-0003 (all T4); dropping resolved items from every trigger would give GS-0001 alone.",
+      "now": "2026-10-06T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "interrupted", "project": "orbit", "title": "orbit: session 10-05 ended on usage limit", "owner": "me", "status": "open", "due_at": null, "review_at": "2026-10-12", "snooze_until": null, "created_at": "2026-10-05T20:40:00Z", "looks_resolved": false},
+        {"id": "GS-0002", "kind": "interrupted", "project": "inkwell", "title": "inkwell: session 10-05 ended on an open question", "owner": "me", "status": "open", "due_at": null, "review_at": "2026-10-12", "snooze_until": null, "created_at": "2026-10-05T22:10:00Z", "looks_resolved": true},
+        {"id": "GS-0003", "kind": "interrupted", "project": "shop", "title": "shop: session 09-29 ended on usage limit", "owner": "me", "status": "open", "due_at": null, "review_at": "2026-10-06", "snooze_until": null, "created_at": "2026-09-29T16:00:00Z", "looks_resolved": true}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-09-28T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-09-28", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-09-28"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T14:01:00Z", "finished_at": "2026-10-06T14:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001", "GS-0003"]}
+        ]
+      }
+    },
+    {
+      "name": "t4-first-ever-digest-skips-interruptions-that-look-resolved",
+      "why": "09:15 Tue, no digest ever recorded, so every open interrupted item that does not look resolved is T4. looks_resolved is read as D1 returns it too: true or 1 means resolved; false, 0 or a missing field do not. GS-0001 (false) and GS-0004 (0) are T4; GS-0002 (true) and GS-0003 (1) are not, and none of the four has another trigger (every review is still ahead). T4 by id, as none has a due: GS-0001, GS-0004.",
+      "now": "2026-10-06T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "interrupted", "project": "orbit", "title": "orbit: session 09-30 ended on usage limit", "owner": "me", "status": "open", "due_at": null, "review_at": "2026-10-07", "snooze_until": null, "created_at": "2026-09-30T16:00:00Z", "looks_resolved": false},
+        {"id": "GS-0002", "kind": "interrupted", "project": "inkwell", "title": "inkwell: session 10-01 ended on an open question", "owner": "me", "status": "open", "due_at": null, "review_at": "2026-10-08", "snooze_until": null, "created_at": "2026-10-01T16:00:00Z", "looks_resolved": true},
+        {"id": "GS-0003", "kind": "interrupted", "project": "shop", "title": "shop: session 10-02 ended on usage limit", "owner": "me", "status": "open", "due_at": null, "review_at": "2026-10-09", "snooze_until": null, "created_at": "2026-10-02T16:00:00Z", "looks_resolved": 1},
+        {"id": "GS-0004", "kind": "interrupted", "project": "home", "title": "home: session 10-03 ended on an open question", "owner": "me", "status": "open", "due_at": null, "review_at": "2026-10-10", "snooze_until": null, "created_at": "2026-10-03T16:00:00Z", "looks_resolved": 0}
+      ],
+      "notifications": [],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T14:01:00Z", "finished_at": "2026-10-06T14:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001", "GS-0004"]}
+        ]
+      }
+    },
+    {
+      "name": "reopened-snooze-at-0915-joins-the-digest-T5",
+      "why": "GS-0001 is snoozed until today 09:00 (14:00Z) <= now 14:15Z: it is listed in reopen, counts as reopened today (T5), and the digest carries it.",
+      "now": "2026-10-06T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "decision", "project": "shop", "title": "shop: decide on the footer layout", "owner": "me", "status": "snoozed", "due_at": null, "review_at": "2026-10-09", "snooze_until": "2026-10-06T09:00", "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T14:01:00Z", "finished_at": "2026-10-06T14:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": ["GS-0001"],
+        "send": [
+          {"kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"]}
+        ]
+      }
+    },
+    {
+      "name": "reopened-earlier-today-counts-T5",
+      "why": "GS-0001 is already open (reopened at the quiet-hours tick) with snooze_until today 07:00 <= now: reopened today (T5). GS-0002 is open with snooze_until yesterday: it was reopened yesterday, so not T5, and its review is in the future. Nothing is snoozed, so reopen is empty.",
+      "now": "2026-10-06T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "decision", "project": "shop", "title": "shop: decide on the footer layout", "owner": "me", "status": "open", "due_at": null, "review_at": "2026-10-09", "snooze_until": "2026-10-06T07:00", "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0002", "kind": "decision", "project": "home", "title": "home: schedule the annual furnace service", "owner": "me", "status": "open", "due_at": null, "review_at": "2026-10-09", "snooze_until": "2026-10-05T09:00", "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T14:01:00Z", "finished_at": "2026-10-06T14:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"]}
+        ]
+      }
+    },
+    {
+      "name": "reopened-at-the-0730-quiet-tick-drives-the-0915-digest-T5",
+      "why": "Continues quiet-hours-0730-reopen-only. The 07:30 tick listed GS-0001 (snoozed until 07:00) in reopen; snooze expiry set it open (rev + 1) and kept snooze_until. At 09:15 it is open with snooze_until today 07:00 (12:00Z) <= now: reopened today, T5, and the only trigger, so it drives the digest. GS-0002 was reopened by hand (the phone's Undo), which clears snooze_until: not T5, and its review is in 3 days. GS-0003 is still snoozed until 10:00 (15:00Z), after now: not reopened, so not active. Nothing is due to reopen.",
+      "now": "2026-10-06T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "decision", "project": "shop", "title": "shop: decide on the footer layout", "owner": "me", "status": "open", "due_at": null, "review_at": "2026-10-12", "snooze_until": "2026-10-06T07:00", "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0002", "kind": "decision", "project": "home", "title": "home: schedule the annual furnace service", "owner": "me", "status": "open", "due_at": null, "review_at": "2026-10-09", "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0003", "kind": "decision", "project": "orbit", "title": "orbit: pick the next release name", "owner": "me", "status": "snoozed", "due_at": null, "review_at": "2026-10-13", "snooze_until": "2026-10-06T10:00", "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T14:01:00Z", "finished_at": "2026-10-06T14:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"]}
+        ]
+      }
+    },
+    {
+      "name": "cron-reopened-before-decide-T5-both-branches-sort-by-due",
+      "why": "09:15 Tue. The Worker's cron reopens due snoozes before it calls decide, keeping snooze_until: GS-0001 and GS-0003 arrive open with snooze_until today 09:00 (14:00Z) <= now, T5 by the second branch. GS-0002 is still snoozed until 09:00 (as a local adapter sees it before applying reopen): decide lists it in reopen, and it is T5 by the first branch. All three sit in T5, ordered by due with no-due last: GS-0002 (due 10-30, 24 days out, no due trigger) first, then GS-0001 and GS-0003 by id. Neither id order, input order nor reversed input order gives GS-0002, GS-0001, GS-0003.",
+      "now": "2026-10-06T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "home", "title": "home: water the plants", "owner": "me", "status": "open", "due_at": null, "review_at": "2026-10-12", "snooze_until": "2026-10-06T09:00", "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0002", "kind": "promise", "project": "shop", "title": "shop: fix the checkout button", "owner": "me", "status": "snoozed", "due_at": "2026-10-30", "review_at": null, "snooze_until": "2026-10-06T09:00", "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0003", "kind": "decision", "project": "orbit", "title": "orbit: pick the next release name", "owner": "me", "status": "open", "due_at": null, "review_at": "2026-10-13", "snooze_until": "2026-10-06T09:00", "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T14:01:00Z", "finished_at": "2026-10-06T14:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": ["GS-0002"],
+        "send": [
+          {"kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0002", "GS-0001", "GS-0003"]}
+        ]
+      }
+    },
+    {
+      "name": "review-at-today-T6",
+      "why": "GS-0001 has no due_at and review_at = today: T6.",
+      "now": "2026-10-06T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "decision", "project": "shop", "title": "shop: decide on the footer layout", "owner": "me", "status": "open", "due_at": null, "review_at": "2026-10-06", "snooze_until": null, "created_at": "2026-09-29T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T14:01:00Z", "finished_at": "2026-10-06T14:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"]}
+        ]
+      }
+    },
+    {
+      "name": "review-at-plus-14-T6",
+      "why": "Today - review_at: GS-0001 14 days (multiple of 7: T6); GS-0002 11 days (no); GS-0003 review is in the future (no); GS-0004 is due 14 days out and has no review date (no trigger).",
+      "now": "2026-10-06T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "decision", "project": "shop", "title": "shop: decide on the footer layout", "owner": "me", "status": "open", "due_at": null, "review_at": "2026-09-22", "snooze_until": null, "created_at": "2026-09-15T15:00:00Z"},
+        {"id": "GS-0002", "kind": "decision", "project": "home", "title": "home: schedule the annual furnace service", "owner": "me", "status": "open", "due_at": null, "review_at": "2026-09-25", "snooze_until": null, "created_at": "2026-09-18T15:00:00Z"},
+        {"id": "GS-0003", "kind": "decision", "project": "orbit", "title": "orbit: pick the next release name", "owner": "me", "status": "open", "due_at": null, "review_at": "2026-10-13", "snooze_until": null, "created_at": "2026-10-06T13:00:00Z"},
+        {"id": "GS-0004", "kind": "promise", "project": "home", "title": "home: water the plants", "owner": "me", "status": "open", "due_at": "2026-10-20", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T14:01:00Z", "finished_at": "2026-10-06T14:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"]}
+        ]
+      }
+    },
+    {
+      "name": "review-at-on-a-dated-item-T6",
+      "why": "09:15 Tue. T6 reads review_at whether or not the item also has a due date (ghosted add --due ... --review ... stores both). GS-0002 is due 10-20, 14 days out (no due trigger), and its review_at is today: T6. GS-0005 is due 10-25 and its review was 14 days ago: T6. GS-0001 has no due and its review was 7 days ago: T6. GS-0003's review was 4 days ago (no) and GS-0004 has no review date. Inside T6, items with a due come first, by due, then those without: GS-0002, GS-0005, GS-0001 (neither id order, input order nor reversed input order gives this).",
+      "now": "2026-10-06T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "decision", "project": "shop", "title": "shop: decide on the footer layout", "owner": "me", "status": "open", "due_at": null, "review_at": "2026-09-29", "snooze_until": null, "created_at": "2026-09-22T15:00:00Z"},
+        {"id": "GS-0002", "kind": "promise", "project": "orbit", "title": "orbit: update the privacy statement", "owner": "me", "status": "open", "due_at": "2026-10-20", "review_at": "2026-10-06", "snooze_until": null, "created_at": "2026-09-29T15:00:00Z"},
+        {"id": "GS-0003", "kind": "promise", "project": "home", "title": "home: return the library book", "owner": "me", "status": "open", "due_at": "2026-10-27", "review_at": "2026-10-02", "snooze_until": null, "created_at": "2026-09-25T15:00:00Z"},
+        {"id": "GS-0004", "kind": "promise", "project": "shop", "title": "shop: fix the checkout button", "owner": "me", "status": "open", "due_at": "2026-10-15", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0005", "kind": "promise", "project": "home", "title": "home: schedule the annual furnace service", "owner": "me", "status": "open", "due_at": "2026-10-25", "review_at": "2026-09-22", "snooze_until": null, "created_at": "2026-09-15T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T14:01:00Z", "finished_at": "2026-10-06T14:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0002", "GS-0005", "GS-0001"]}
+        ]
+      }
+    },
+    {
+      "name": "owner-claude-items-count",
+      "why": "Owner does not filter the digest: a promise owned by claude, due today, is T1.",
+      "now": "2026-10-06T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "shop", "title": "shop: redo the inventory count", "owner": "claude", "status": "open", "due_at": "2026-10-06", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T14:01:00Z", "finished_at": "2026-10-06T14:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"]}
+        ]
+      }
+    },
+    {
+      "name": "closed-items-never-appear",
+      "why": "No digest was ever sent, so any OPEN interrupted item would be T4, but every item here is closed: an overdue done promise, a dismissed decision reviewing today, a dismissed interrupted item, a done timed item inside its advance window, and a done item whose snooze_until passed (only snoozed items reopen). Nothing.",
+      "now": "2026-10-06T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "home", "title": "home: return the library book", "owner": "me", "status": "done", "due_at": "2026-10-01", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0002", "kind": "decision", "project": "shop", "title": "shop: decide on the footer layout", "owner": "me", "status": "dismissed", "due_at": null, "review_at": "2026-10-06", "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0003", "kind": "interrupted", "project": "orbit", "title": "orbit: session 10-05 ended on usage limit", "owner": "me", "status": "dismissed", "due_at": null, "review_at": "2026-10-12", "snooze_until": null, "created_at": "2026-10-05T20:00:00Z"},
+        {"id": "GS-0004", "kind": "promise", "project": "orbit", "title": "orbit: renew the license", "owner": "me", "status": "done", "due_at": "2026-10-07T09:00", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0005", "kind": "promise", "project": "home", "title": "home: water the plants", "owner": "me", "status": "done", "due_at": null, "review_at": "2026-10-08", "snooze_until": "2026-10-06T09:00", "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T14:01:00Z", "finished_at": "2026-10-06T14:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": []
+      }
+    },
+    {
+      "name": "snoozed-item-due-today-is-not-a-digest-item",
+      "why": "Snoozed items that are not reopened in this tick are not digest items: GS-0001 is due today and GS-0002 reviews today, but both are snoozed into the future.",
+      "now": "2026-10-06T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "shop", "title": "shop: fix the checkout button", "owner": "me", "status": "snoozed", "due_at": "2026-10-06", "review_at": null, "snooze_until": "2026-10-09T09:00", "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0002", "kind": "decision", "project": "shop", "title": "shop: decide on the footer layout", "owner": "me", "status": "snoozed", "due_at": null, "review_at": "2026-10-06", "snooze_until": "2026-10-13T09:00", "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T14:01:00Z", "finished_at": "2026-10-06T14:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": []
+      }
+    },
+    {
+      "name": "digest-too-early-0815",
+      "why": "08:15 local (13:15Z): not quiet (8 >= quiet_end) but before digest_hour 9. No timed items, so no advance either.",
+      "now": "2026-10-06T13:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "shop", "title": "shop: order the new display shelves", "owner": "me", "status": "open", "due_at": "2026-10-06", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T13:01:00Z", "finished_at": "2026-10-06T13:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": []
+      }
+    },
+    {
+      "name": "digest-window-closed-1215",
+      "why": "12:15 local (17:15Z): hour 12 is not < digest_hour + 3 = 12. No digest.",
+      "now": "2026-10-06T17:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "shop", "title": "shop: order the new display shelves", "owner": "me", "status": "open", "due_at": "2026-10-06", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T17:01:00Z", "finished_at": "2026-10-06T17:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": []
+      }
+    },
+    {
+      "name": "digest-catch-up-1015",
+      "why": "10:15 local: still inside [9, 12) and no digest:2026-10-06 exists (the 09:15 tick sent none), so the catch-up digest goes out.",
+      "now": "2026-10-06T15:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "shop", "title": "shop: order the new display shelves", "owner": "me", "status": "open", "due_at": "2026-10-06", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T15:01:00Z", "finished_at": "2026-10-06T15:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"]}
+        ]
+      }
+    },
+    {
+      "name": "digest-catch-up-1115-last-hour",
+      "why": "11:15 local is the last hour of the window [9, 12).",
+      "now": "2026-10-06T16:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "shop", "title": "shop: order the new display shelves", "owner": "me", "status": "open", "due_at": "2026-10-06", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T16:01:00Z", "finished_at": "2026-10-06T16:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"]}
+        ]
+      }
+    },
+    {
+      "name": "second-digest-same-day-dedup",
+      "why": "10:15 local and digest:2026-10-06 already exists: no second digest, even though GS-0001 is due today and GS-0002 is a new interruption created after this morning's digest (it waits for tomorrow's T4).",
+      "now": "2026-10-06T15:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "shop", "title": "shop: order the new display shelves", "owner": "me", "status": "open", "due_at": "2026-10-06", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0002", "kind": "interrupted", "project": "orbit", "title": "orbit: session 10-06 ended on usage limit", "owner": "me", "status": "open", "due_at": null, "review_at": "2026-10-13", "snooze_until": null, "created_at": "2026-10-06T14:40:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"},
+        {"id": 2, "sent_at": "2026-10-06T14:15:20Z", "kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"], "ok": 1, "local_date": "2026-10-06"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T15:01:00Z", "finished_at": "2026-10-06T15:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": []
+      }
+    },
+    {
+      "name": "failed-digest-row-still-dedups",
+      "why": "Today's digest row has ok = 0 (the send failed). Dedup is by key, whatever ok says: no retry.",
+      "now": "2026-10-06T15:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "shop", "title": "shop: order the new display shelves", "owner": "me", "status": "open", "due_at": "2026-10-06", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"},
+        {"id": 2, "sent_at": "2026-10-06T14:15:20Z", "kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"], "ok": 0, "local_date": "2026-10-06"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T15:01:00Z", "finished_at": "2026-10-06T15:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": []
+      }
+    },
+    {
+      "name": "budget-exhausted-three-today",
+      "why": "Three notifications already carry local_date today (one of them failed: any ok counts). Budget 3 is used up, so neither the digest (GS-0001 due today, GS-0002 T3) nor GS-0002's advance (due tomorrow 09:00, window open) is sent.",
+      "now": "2026-10-06T15:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "shop", "title": "shop: order the new display shelves", "owner": "me", "status": "open", "due_at": "2026-10-06", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0002", "kind": "promise", "project": "orbit", "title": "orbit: renew the license", "owner": "me", "status": "open", "due_at": "2026-10-07T09:00", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"},
+        {"id": 3, "sent_at": "2026-10-06T13:15:10Z", "kind": "advance", "dedup_key": "advance:GS-0007", "item_ids": ["GS-0007"], "ok": 1, "local_date": "2026-10-06"},
+        {"id": 4, "sent_at": "2026-10-06T13:15:11Z", "kind": "advance", "dedup_key": "advance:GS-0008", "item_ids": ["GS-0008"], "ok": 0, "local_date": "2026-10-06"},
+        {"id": 5, "sent_at": "2026-10-06T13:15:12Z", "kind": "advance", "dedup_key": "advance:GS-0009", "item_ids": ["GS-0009"], "ok": 1, "local_date": "2026-10-06"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T15:01:00Z", "finished_at": "2026-10-06T15:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": []
+      }
+    },
+    {
+      "name": "budget-counts-local-date-not-utc-date",
+      "why": "Three advance rows were sent at 02:15Z on 10-06, which is 21:15 on 10-05 locally, and their local_date is 2026-10-05. Today's count is 0, so the digest goes out.",
+      "now": "2026-10-06T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "shop", "title": "shop: order the new display shelves", "owner": "me", "status": "open", "due_at": "2026-10-06", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"},
+        {"id": 2, "sent_at": "2026-10-06T02:15:00Z", "kind": "advance", "dedup_key": "advance:GS-0007", "item_ids": ["GS-0007"], "ok": 1, "local_date": "2026-10-05"},
+        {"id": 3, "sent_at": "2026-10-06T02:15:01Z", "kind": "advance", "dedup_key": "advance:GS-0008", "item_ids": ["GS-0008"], "ok": 1, "local_date": "2026-10-05"},
+        {"id": 4, "sent_at": "2026-10-06T02:15:02Z", "kind": "advance", "dedup_key": "advance:GS-0009", "item_ids": ["GS-0009"], "ok": 1, "local_date": "2026-10-05"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T14:01:00Z", "finished_at": "2026-10-06T14:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"]}
+        ]
+      }
+    },
+    {
+      "name": "quiet-hours-2230-reopen-only",
+      "why": "22:30 local (03:30Z next UTC day) is quiet (>= 22): nothing is sent. GS-0001's snooze ended at 22:00 (03:00Z), so it is still listed in reopen. GS-0002 (due today) and GS-0003 (advance window open: due tomorrow 20:00) are suppressed.",
+      "now": "2026-10-07T03:30:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "decision", "project": "shop", "title": "shop: decide on the footer layout", "owner": "me", "status": "snoozed", "due_at": null, "review_at": "2026-10-12", "snooze_until": "2026-10-06T22:00", "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0002", "kind": "promise", "project": "shop", "title": "shop: order the new display shelves", "owner": "me", "status": "open", "due_at": "2026-10-06", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0003", "kind": "promise", "project": "orbit", "title": "orbit: renew the license", "owner": "me", "status": "open", "due_at": "2026-10-07T20:00", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"},
+        {"id": 2, "sent_at": "2026-10-06T14:15:20Z", "kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"], "ok": 1, "local_date": "2026-10-06"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-07T03:16:00Z", "finished_at": "2026-10-07T03:18:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": ["GS-0001"],
+        "send": []
+      }
+    },
+    {
+      "name": "quiet-hours-0730-reopen-only",
+      "why": "07:30 local (12:30Z) is quiet (< 8). GS-0001's snooze ended at 07:00 (12:00Z): reopen lists it. GS-0002's advance window (due tomorrow 07:00) is open, but quiet hours suppress it.",
+      "now": "2026-10-06T12:30:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "decision", "project": "shop", "title": "shop: decide on the footer layout", "owner": "me", "status": "snoozed", "due_at": null, "review_at": "2026-10-12", "snooze_until": "2026-10-06T07:00", "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0002", "kind": "promise", "project": "orbit", "title": "orbit: renew the license", "owner": "me", "status": "open", "due_at": "2026-10-07T07:00", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T12:16:00Z", "finished_at": "2026-10-06T12:18:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": ["GS-0001"],
+        "send": []
+      }
+    },
+    {
+      "name": "advance-at-due-minus-24h",
+      "why": "14:15 local (19:15Z), digest window closed. GS-0001 is due tomorrow 14:00 = 19:00Z 10-07; due - 24h = 19:00Z today <= now < due, and no advance:GS-0001 exists: one advance push whose body is the item's title. Budget: 1 used today, 2 left. Today's 09:15 digest carried GS-0001, but it went out at 14:15:20Z, before due - 24h (19:00Z), so it does not stand in for the advance.",
+      "now": "2026-10-06T19:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "orbit", "title": "orbit: renew the license", "owner": "me", "status": "open", "due_at": "2026-10-07T14:00", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"},
+        {"id": 2, "sent_at": "2026-10-06T14:15:20Z", "kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"], "ok": 1, "local_date": "2026-10-06"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T19:01:00Z", "finished_at": "2026-10-06T19:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "advance", "dedup_key": "advance:GS-0001", "item_ids": ["GS-0001"]}
+        ]
+      },
+      "expect_bodies": ["orbit: renew the license"]
+    },
+    {
+      "name": "advance-before-the-window",
+      "why": "13:15 local (18:15Z): due - 24h = 19:00Z is still ahead. Nothing.",
+      "now": "2026-10-06T18:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "orbit", "title": "orbit: renew the license", "owner": "me", "status": "open", "due_at": "2026-10-07T14:00", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"},
+        {"id": 2, "sent_at": "2026-10-06T14:15:20Z", "kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"], "ok": 1, "local_date": "2026-10-06"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T18:01:00Z", "finished_at": "2026-10-06T18:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": []
+      }
+    },
+    {
+      "name": "advance-after-due",
+      "why": "Wed 14:15 local (19:15Z 10-07): now >= due (19:00Z), so no advance. The digest window is closed and today's digest already exists.",
+      "now": "2026-10-07T19:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "orbit", "title": "orbit: renew the license", "owner": "me", "status": "open", "due_at": "2026-10-07T14:00", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 2, "sent_at": "2026-10-06T14:15:20Z", "kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"], "ok": 1, "local_date": "2026-10-06"},
+        {"id": 3, "sent_at": "2026-10-07T14:15:20Z", "kind": "digest", "dedup_key": "digest:2026-10-07", "item_ids": ["GS-0001"], "ok": 1, "local_date": "2026-10-07"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-07T19:01:00Z", "finished_at": "2026-10-07T19:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": []
+      }
+    },
+    {
+      "name": "advance-already-sent",
+      "why": "15:15 local: the window is open but advance:GS-0001 was sent an hour ago.",
+      "now": "2026-10-06T20:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "orbit", "title": "orbit: renew the license", "owner": "me", "status": "open", "due_at": "2026-10-07T14:00", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"},
+        {"id": 2, "sent_at": "2026-10-06T14:15:20Z", "kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"], "ok": 1, "local_date": "2026-10-06"},
+        {"id": 3, "sent_at": "2026-10-06T19:15:20Z", "kind": "advance", "dedup_key": "advance:GS-0001", "item_ids": ["GS-0001"], "ok": 1, "local_date": "2026-10-06"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T20:01:00Z", "finished_at": "2026-10-06T20:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": []
+      }
+    },
+    {
+      "name": "advance-once-per-item-ever",
+      "why": "The item was rescheduled; advance:GS-0001 was sent a week ago for the old due date. The key is per item, not per due date: no second advance.",
+      "now": "2026-10-06T19:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "orbit", "title": "orbit: renew the license", "owner": "me", "status": "open", "due_at": "2026-10-07T14:00", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"},
+        {"id": 2, "sent_at": "2026-10-06T14:15:20Z", "kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"], "ok": 1, "local_date": "2026-10-06"},
+        {"id": 3, "sent_at": "2026-09-29T19:15:20Z", "kind": "advance", "dedup_key": "advance:GS-0001", "item_ids": ["GS-0001"], "ok": 1, "local_date": "2026-09-29"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T19:01:00Z", "finished_at": "2026-10-06T19:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": []
+      }
+    },
+    {
+      "name": "advance-fires-at-0815-after-the-window-opened-in-quiet-hours",
+      "why": "08:15 local (13:15Z) is not quiet and advance has no window of its own. GS-0001 is due tomorrow 07:00 (12:00Z 10-07), so its window opened at 07:00 today, inside quiet hours; this is the first tick allowed to send it. The digest window is not open yet.",
+      "now": "2026-10-06T13:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "orbit", "title": "orbit: renew the license", "owner": "me", "status": "open", "due_at": "2026-10-07T07:00", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T13:01:00Z", "finished_at": "2026-10-06T13:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "advance", "dedup_key": "advance:GS-0001", "item_ids": ["GS-0001"]}
+        ]
+      }
+    },
+    {
+      "name": "date-only-items-never-get-advance-pushes",
+      "why": "GS-0001 is due tomorrow with no time. Advance is for timed items only (its folded-in warning is T3 in the digest, whose window is closed at 14:15).",
+      "now": "2026-10-06T19:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "orbit", "title": "orbit: renew the license", "owner": "me", "status": "open", "due_at": "2026-10-07", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"},
+        {"id": 2, "sent_at": "2026-10-06T14:15:20Z", "kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"], "ok": 1, "local_date": "2026-10-06"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T19:01:00Z", "finished_at": "2026-10-06T19:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": []
+      }
+    },
+    {
+      "name": "digest-then-advance-in-the-same-tick",
+      "why": "09:15. GS-0001 is due tomorrow 09:00 (14:00Z 10-07): 23h45m ahead, so T3 for the digest, and due - 24h = 14:00Z today <= now < due, so its advance window is open too. The digest decided in this tick carries GS-0001, so the advance is skipped (no double push for one item) and the digest goes out alone. Before that rule this tick sent the digest, then the advance.",
+      "now": "2026-10-06T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "orbit", "title": "orbit: renew the license", "owner": "me", "status": "open", "due_at": "2026-10-07T09:00", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T14:01:00Z", "finished_at": "2026-10-06T14:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"]}
+        ]
+      }
+    },
+    {
+      "name": "budget-digest-takes-the-last-slot",
+      "why": "As above, but two advance pushes already went out today: one slot left. The digest comes first and takes it. GS-0001's advance stays unsent either way: the digest decided in this tick carries it (no double push), and no slot is left.",
+      "now": "2026-10-06T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "orbit", "title": "orbit: renew the license", "owner": "me", "status": "open", "due_at": "2026-10-07T09:00", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"},
+        {"id": 3, "sent_at": "2026-10-06T13:15:10Z", "kind": "advance", "dedup_key": "advance:GS-0007", "item_ids": ["GS-0007"], "ok": 1, "local_date": "2026-10-06"},
+        {"id": 4, "sent_at": "2026-10-06T13:15:11Z", "kind": "advance", "dedup_key": "advance:GS-0008", "item_ids": ["GS-0008"], "ok": 1, "local_date": "2026-10-06"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T14:01:00Z", "finished_at": "2026-10-06T14:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"]}
+        ]
+      }
+    },
+    {
+      "name": "advance-skipped-after-a-delivered-digest-carried-it",
+      "why": "10:15 Tue (15:15Z). GS-0001 is due tomorrow 09:00 (14:00Z 10-07), so its advance window opened at 14:00Z today and no advance row exists. But the 09:15 digest carried it (T3) and was delivered at 14:15:20Z, at or after due - 24h: that digest was its warning, so no advance. Today's digest row dedups a second digest. One push used today, two left: the budget is not what stops it.",
+      "now": "2026-10-06T15:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "orbit", "title": "orbit: renew the license", "owner": "me", "status": "open", "due_at": "2026-10-07T09:00", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"},
+        {"id": 2, "sent_at": "2026-10-06T14:15:20Z", "kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"], "ok": 1, "local_date": "2026-10-06"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T15:01:00Z", "finished_at": "2026-10-06T15:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": []
+      }
+    },
+    {
+      "name": "advance-skip-counts-a-digest-sent-exactly-at-due-minus-24h",
+      "why": "10:15 Tue (15:15Z). The 09:15 digest was delivered at exactly 14:15:00Z and carried both items (each T3 then). GS-0001 is due tomorrow 09:15 (14:15Z 10-07): due - 24h = 14:15:00Z, the digest's own instant, and 'at or after' includes it, so no advance. GS-0002 is due tomorrow 09:16: due - 24h = 14:16Z, a minute after the digest, so the digest does not count and its advance (window open since 14:16Z) goes out. Budget: one used, two left.",
+      "now": "2026-10-06T15:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "orbit", "title": "orbit: renew the license", "owner": "me", "status": "open", "due_at": "2026-10-07T09:15", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0002", "kind": "promise", "project": "home", "title": "home: return the library book", "owner": "me", "status": "open", "due_at": "2026-10-07T09:16", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"},
+        {"id": 2, "sent_at": "2026-10-06T14:15:00Z", "kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001", "GS-0002"], "ok": 1, "local_date": "2026-10-06"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T15:01:00Z", "finished_at": "2026-10-06T15:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "advance", "dedup_key": "advance:GS-0002", "item_ids": ["GS-0002"]}
+        ]
+      }
+    },
+    {
+      "name": "advance-fires-when-the-digest-that-carried-it-failed",
+      "why": "10:15 Tue (15:15Z). Today's digest row carried GS-0001 but its send failed (ok 0). It still dedups today's digest and counts in the budget (one used, two left), but a failed send reached nobody, so it does not stand in for the advance: GS-0001 (due tomorrow 09:00, window open since 14:00Z, no advance row) gets its advance.",
+      "now": "2026-10-06T15:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "orbit", "title": "orbit: renew the license", "owner": "me", "status": "open", "due_at": "2026-10-07T09:00", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"},
+        {"id": 2, "sent_at": "2026-10-06T14:15:20Z", "kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"], "ok": 0, "local_date": "2026-10-06"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T15:01:00Z", "finished_at": "2026-10-06T15:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "advance", "dedup_key": "advance:GS-0001", "item_ids": ["GS-0001"]}
+        ]
+      }
+    },
+    {
+      "name": "advance-fires-when-the-delivered-digest-did-not-carry-it",
+      "why": "10:15 Tue (15:15Z). The 09:15 digest was delivered at 14:15:20Z with GS-0001 only (date-only, due today: no advance ever). GS-0002 was registered at 09:40 (14:40Z), after that digest, due tomorrow 09:10 (14:10Z 10-07): its window opened at 14:10Z, and although the digest went out after due - 24h it did not carry GS-0002, so the advance goes out. Today's digest row dedups a second digest.",
+      "now": "2026-10-06T15:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "shop", "title": "shop: order the new display shelves", "owner": "me", "status": "open", "due_at": "2026-10-06", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0002", "kind": "promise", "project": "orbit", "title": "orbit: renew the license", "owner": "me", "status": "open", "due_at": "2026-10-07T09:10", "review_at": null, "snooze_until": null, "created_at": "2026-10-06T14:40:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"},
+        {"id": 2, "sent_at": "2026-10-06T14:15:20Z", "kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"], "ok": 1, "local_date": "2026-10-06"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T15:01:00Z", "finished_at": "2026-10-06T15:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "advance", "dedup_key": "advance:GS-0002", "item_ids": ["GS-0002"]}
+        ]
+      }
+    },
+    {
+      "name": "advance-stays-skipped-the-next-morning",
+      "why": "08:15 Wed (13:15Z 10-07): not quiet, the digest window is not open yet. GS-0001 is due today 09:00 (14:00Z); its advance window has been open since 14:00Z Tue and no advance row exists, but Tue's 09:15 digest carried it, delivered at 14:15:20Z Tue, at or after due - 24h. A delivered digest from an earlier day counts as well as today's: no advance.",
+      "now": "2026-10-07T13:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "orbit", "title": "orbit: renew the license", "owner": "me", "status": "open", "due_at": "2026-10-07T09:00", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"},
+        {"id": 2, "sent_at": "2026-10-06T14:15:20Z", "kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"], "ok": 1, "local_date": "2026-10-06"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-07T13:01:00Z", "finished_at": "2026-10-07T13:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": []
+      }
+    },
+    {
+      "name": "advance-skip-reads-item-ids-stored-as-json-text",
+      "why": "As advance-skipped-after-a-delivered-digest-carried-it, with the digest row's item_ids as the D1 column stores them: JSON text, not an array. Both engines read the text as the list it holds, so the delivered 09:15 digest carried GS-0001 at or after due - 24h and no advance goes out.",
+      "now": "2026-10-06T15:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "orbit", "title": "orbit: renew the license", "owner": "me", "status": "open", "due_at": "2026-10-07T09:00", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"},
+        {"id": 2, "sent_at": "2026-10-06T14:15:20Z", "kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": "[\"GS-0001\"]", "ok": 1, "local_date": "2026-10-06"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T15:01:00Z", "finished_at": "2026-10-06T15:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": []
+      }
+    },
+    {
+      "name": "advances-ordered-by-due-and-cut-by-budget",
+      "why": "14:15 local, 1 notification today, 2 slots left. Three timed items are inside their windows: GS-0002 due today 18:00 (23:00Z), GS-0003 due tomorrow 11:00 (16:00Z), GS-0001 due tomorrow 14:00 (19:00Z). Earliest due first, so GS-0002 then GS-0003; GS-0001 does not fit. (Neither input order, reversed input order nor id order gives this.) Today's 09:15 digest carried GS-0001 at 14:15:20Z, before its due - 24h (19:00Z), so that does not skip it; the budget does.",
+      "now": "2026-10-06T19:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "orbit", "title": "orbit: renew the license", "owner": "me", "status": "open", "due_at": "2026-10-07T14:00", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0002", "kind": "promise", "project": "home", "title": "home: return the library book", "owner": "me", "status": "open", "due_at": "2026-10-06T18:00", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0003", "kind": "promise", "project": "shop", "title": "shop: first newsletter goes out", "owner": "me", "status": "open", "due_at": "2026-10-07T11:00", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"},
+        {"id": 2, "sent_at": "2026-10-06T14:15:20Z", "kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"], "ok": 1, "local_date": "2026-10-06"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T19:01:00Z", "finished_at": "2026-10-06T19:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "advance", "dedup_key": "advance:GS-0002", "item_ids": ["GS-0002"]},
+          {"kind": "advance", "dedup_key": "advance:GS-0003", "item_ids": ["GS-0003"]}
+        ]
+      }
+    },
+    {
+      "name": "advance-window-start-is-inclusive",
+      "why": "14:00:00 local exactly (19:00Z): due tomorrow 14:00, so due - 24h == now, and the rule is due - 24h <= now. Today's 09:15 digest carried GS-0001 at 14:15:20Z, before due - 24h, so it does not stand in for the advance.",
+      "now": "2026-10-06T19:00:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "orbit", "title": "orbit: renew the license", "owner": "me", "status": "open", "due_at": "2026-10-07T14:00", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"},
+        {"id": 2, "sent_at": "2026-10-06T14:15:20Z", "kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"], "ok": 1, "local_date": "2026-10-06"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T18:46:00Z", "finished_at": "2026-10-06T18:48:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "advance", "dedup_key": "advance:GS-0001", "item_ids": ["GS-0001"]}
+        ]
+      }
+    },
+    {
+      "name": "advance-window-end-is-exclusive",
+      "why": "Wed 14:00:00 local exactly (19:00Z 10-07) = the due instant: the rule is now < due, so no advance. The digest window is closed.",
+      "now": "2026-10-07T19:00:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "orbit", "title": "orbit: renew the license", "owner": "me", "status": "open", "due_at": "2026-10-07T14:00", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 2, "sent_at": "2026-10-06T14:15:20Z", "kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"], "ok": 1, "local_date": "2026-10-06"},
+        {"id": 3, "sent_at": "2026-10-07T14:15:20Z", "kind": "digest", "dedup_key": "digest:2026-10-07", "item_ids": ["GS-0001"], "ok": 1, "local_date": "2026-10-07"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-07T18:46:00Z", "finished_at": "2026-10-07T18:48:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": []
+      }
+    },
+    {
+      "name": "advance-fires-at-2115-the-last-hour-before-quiet",
+      "why": "21:15 local (02:15Z on 10-07) is not quiet (21 < 22). GS-0001 is due 10-07 20:00 (01:00Z 10-08), so the window opened at 01:00Z: the advance goes out, dated local 10-06. The 09:15 digest carried GS-0001 at 14:15:20Z, before due - 24h (01:00Z 10-07), so it does not stand in for the advance.",
+      "now": "2026-10-07T02:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "orbit", "title": "orbit: renew the license", "owner": "me", "status": "open", "due_at": "2026-10-07T20:00", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"},
+        {"id": 2, "sent_at": "2026-10-06T14:15:20Z", "kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"], "ok": 1, "local_date": "2026-10-06"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-07T02:01:00Z", "finished_at": "2026-10-07T02:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "advance", "dedup_key": "advance:GS-0001", "item_ids": ["GS-0001"]}
+        ]
+      }
+    },
+    {
+      "name": "advance-for-an-item-reopened-this-tick",
+      "why": "GS-0001's snooze ended at 14:00 (19:00Z) <= now: reopened in this tick, so it counts as open for every rule. Its due tomorrow 13:00 (18:00Z 10-07) puts now inside the advance window. Today's 09:15 digest row lists GS-0001 at 14:15:20Z, before due - 24h (18:00Z), so it does not stand in for the advance.",
+      "now": "2026-10-06T19:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "orbit", "title": "orbit: renew the license", "owner": "me", "status": "snoozed", "due_at": "2026-10-07T13:00", "review_at": null, "snooze_until": "2026-10-06T14:00", "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"},
+        {"id": 2, "sent_at": "2026-10-06T14:15:20Z", "kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"], "ok": 1, "local_date": "2026-10-06"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T19:01:00Z", "finished_at": "2026-10-06T19:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": ["GS-0001"],
+        "send": [
+          {"kind": "advance", "dedup_key": "advance:GS-0001", "item_ids": ["GS-0001"]}
+        ]
+      }
+    },
+    {
+      "name": "snoozed-timed-item-gets-no-advance",
+      "why": "GS-0001 is snoozed until Thu, so it is not open, although now is inside its advance window.",
+      "now": "2026-10-06T19:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "orbit", "title": "orbit: renew the license", "owner": "me", "status": "snoozed", "due_at": "2026-10-07T13:00", "review_at": null, "snooze_until": "2026-10-08T09:00", "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"},
+        {"id": 2, "sent_at": "2026-10-06T14:15:20Z", "kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"], "ok": 1, "local_date": "2026-10-06"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T19:01:00Z", "finished_at": "2026-10-06T19:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": []
+      }
+    },
+    {
+      "name": "ordering-T2-T1-T3-T4-T5-T6-then-by-due",
+      "why": "Each item sits in its first matching trigger, in the order T2, T1, T3, T4, T5, T6; inside a group by due (date-only = local 00:00), no-due last, then id. T2: GS-0008 (10-01), GS-0007 (10-03 17:00), GS-0009 (10-04). T1: GS-0006. T3: GS-0005 (10-07), GS-0004 (10-08). T4: GS-0003 and GS-0010 (created after the previous digest; GS-0010 is also reopened now, but T4 comes first). T5: GS-0002 (reopened now). T6: GS-0001. Reopen lists GS-0002 and GS-0010 in id order.",
+      "now": "2026-10-06T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "decision", "project": "shop", "title": "shop: decide on the footer layout", "owner": "me", "status": "open", "due_at": null, "review_at": "2026-10-06", "snooze_until": null, "created_at": "2026-09-29T15:00:00Z"},
+        {"id": "GS-0002", "kind": "promise", "project": "home", "title": "home: schedule the annual furnace service", "owner": "me", "status": "snoozed", "due_at": null, "review_at": "2026-10-12", "snooze_until": "2026-10-06T09:00", "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0003", "kind": "interrupted", "project": "orbit", "title": "orbit: session 10-05 ended on usage limit", "owner": "me", "status": "open", "due_at": null, "review_at": "2026-10-12", "snooze_until": null, "created_at": "2026-10-05T22:00:00Z"},
+        {"id": "GS-0004", "kind": "promise", "project": "shop", "title": "shop: first newsletter goes out", "owner": "me", "status": "open", "due_at": "2026-10-08", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0005", "kind": "promise", "project": "shop", "title": "shop: order the new display shelves", "owner": "me", "status": "open", "due_at": "2026-10-07", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0006", "kind": "promise", "project": "shop", "title": "shop: fix the checkout button", "owner": "me", "status": "open", "due_at": "2026-10-06", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0007", "kind": "promise", "project": "orbit", "title": "orbit: trial has expired", "owner": "me", "status": "open", "due_at": "2026-10-03T17:00", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0008", "kind": "promise", "project": "home", "title": "home: return the library book", "owner": "me", "status": "open", "due_at": "2026-10-01", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0009", "kind": "promise", "project": "orbit", "title": "orbit: update the privacy statement", "owner": "me", "status": "open", "due_at": "2026-10-04", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0010", "kind": "interrupted", "project": "inkwell", "title": "inkwell: session 10-05 ended on an open question", "owner": "me", "status": "snoozed", "due_at": null, "review_at": "2026-10-12", "snooze_until": "2026-10-06T09:00", "created_at": "2026-10-05T23:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T14:01:00Z", "finished_at": "2026-10-06T14:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": ["GS-0002", "GS-0010"],
+        "send": [
+          {"kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0008", "GS-0007", "GS-0009", "GS-0006", "GS-0005", "GS-0004", "GS-0003", "GS-0010", "GS-0002", "GS-0001"]}
+        ]
+      }
+    },
+    {
+      "name": "timed-item-past-its-time-today-sorts-as-overdue",
+      "why": "09:15. GS-0002 was due today 08:00 (13:00Z < now): overdue, T2, first. GS-0001 (date-only today) and GS-0003 (today 17:00) are T1, by due: 00:00 before 17:00. GS-0003's advance was sent yesterday, GS-0002 is past due, so no advance.",
+      "now": "2026-10-06T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "shop", "title": "shop: fix the checkout button", "owner": "me", "status": "open", "due_at": "2026-10-06", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0002", "kind": "promise", "project": "orbit", "title": "orbit: renew the license", "owner": "me", "status": "open", "due_at": "2026-10-06T08:00", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0003", "kind": "promise", "project": "home", "title": "home: return the library book", "owner": "me", "status": "open", "due_at": "2026-10-06T17:00", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"},
+        {"id": 2, "sent_at": "2026-10-05T22:15:20Z", "kind": "advance", "dedup_key": "advance:GS-0003", "item_ids": ["GS-0003"], "ok": 1, "local_date": "2026-10-05"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T14:01:00Z", "finished_at": "2026-10-06T14:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0002", "GS-0001", "GS-0003"]}
+        ]
+      }
+    },
+    {
+      "name": "timed-T3-uses-48-hours-not-dates",
+      "why": "09:15 Tue (14:15Z). GS-0001 is due Thu 09:00 (14:00Z 10-08), 47h45m ahead: T3. GS-0002 is due Thu 10:00, 48h45m ahead: not T3 for a timed item, although its date is today+2. Neither advance window is open yet.",
+      "now": "2026-10-06T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "orbit", "title": "orbit: renew the license", "owner": "me", "status": "open", "due_at": "2026-10-08T09:00", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0002", "kind": "promise", "project": "shop", "title": "shop: first newsletter goes out", "owner": "me", "status": "open", "due_at": "2026-10-08T10:00", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T14:01:00Z", "finished_at": "2026-10-06T14:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"]}
+        ]
+      }
+    },
+    {
+      "name": "timed-T3-48-hours-is-inclusive",
+      "why": "09:15 Tue (14:15Z). GS-0001 is due Thu 09:15 (14:15Z 10-08), exactly 48h ahead: 'within 48 h' includes the bound, so T3. Its advance window opens tomorrow.",
+      "now": "2026-10-06T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "shop", "title": "shop: first newsletter goes out", "owner": "me", "status": "open", "due_at": "2026-10-08T09:15", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T14:01:00Z", "finished_at": "2026-10-06T14:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"]}
+        ]
+      }
+    },
+    {
+      "name": "digest-body-cut-on-a-separator",
+      "why": "Five overdue items (T2, by due = id order). Full body is 248 chars. Keeping three titles gives 8 + 53 + 3 + 53 + 3 + 54 + 4 = 178 chars with ' · …', exactly the limit; four would be 227.",
+      "now": "2026-10-06T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "orbit", "title": "orbit: update the privacy statement before the launch", "owner": "me", "status": "open", "due_at": "2026-10-01", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0002", "kind": "promise", "project": "inkwell", "title": "inkwell: merge the docs branch and tag the next build", "owner": "me", "status": "open", "due_at": "2026-10-02", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0003", "kind": "promise", "project": "shop", "title": "shop: order the new shelving units before the delivery", "owner": "me", "status": "open", "due_at": "2026-10-03", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0004", "kind": "promise", "project": "shop", "title": "shop: decide whether the winter hours carry on", "owner": "me", "status": "open", "due_at": "2026-10-04", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0005", "kind": "promise", "project": "home", "title": "home: water the plants", "owner": "me", "status": "open", "due_at": "2026-10-05", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T14:01:00Z", "finished_at": "2026-10-06T14:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001", "GS-0002", "GS-0003", "GS-0004", "GS-0005"]}
+        ]
+      },
+      "expect_bodies": ["5 open: orbit: update the privacy statement before the launch · inkwell: merge the docs branch and tag the next build · shop: order the new shelving units before the delivery · …"]
+    },
+    {
+      "name": "digest-body-cut-counts-the-mark-in-the-limit",
+      "why": "Four overdue items (by due = id order) with titles of 54, 54, 54 and 22 chars; full body 201. Three titles are 176 chars without the mark but 180 with ' · …', over 178, so only two are kept: 8 + 54 + 3 + 54 + 4 = 123. The limit applies to the whole body, mark included.",
+      "now": "2026-10-06T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "orbit", "title": "orbit: replace the store screenshots before the review", "owner": "me", "status": "open", "due_at": "2026-10-01", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0002", "kind": "promise", "project": "inkwell", "title": "inkwell: rebase the docs branch, then tag the releases", "owner": "me", "status": "open", "due_at": "2026-10-02", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0003", "kind": "promise", "project": "shop", "title": "shop: order the new shelving units before the delivery", "owner": "me", "status": "open", "due_at": "2026-10-03", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0004", "kind": "promise", "project": "home", "title": "home: water the plants", "owner": "me", "status": "open", "due_at": "2026-10-04", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T14:01:00Z", "finished_at": "2026-10-06T14:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001", "GS-0002", "GS-0003", "GS-0004"]}
+        ]
+      },
+      "expect_bodies": ["4 open: orbit: replace the store screenshots before the review · inkwell: rebase the docs branch, then tag the releases · …"]
+    },
+    {
+      "name": "digest-body-not-cut",
+      "why": "Two items, 75 chars: the body is every title, no cut mark.",
+      "now": "2026-10-06T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "home", "title": "home: return the library book", "owner": "me", "status": "open", "due_at": "2026-10-03", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0002", "kind": "promise", "project": "shop", "title": "shop: order the new display shelves", "owner": "me", "status": "open", "due_at": "2026-10-06", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T14:01:00Z", "finished_at": "2026-10-06T14:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001", "GS-0002"]}
+        ]
+      },
+      "expect_bodies": ["2 open: home: return the library book · shop: order the new display shelves"]
+    },
+    {
+      "name": "digest-body-counts-code-points-not-utf16-units",
+      "why": "Three overdue items (by due = id order) with titles of 55, 55 and 54 code points; GS-0001 holds one emoji outside the BMP, which is 2 UTF-16 units. The full body is 8 + 55 + 3 + 55 + 3 + 54 = 178 code points, exactly the limit, so nothing is cut. Counting UTF-16 units (JS .length) gives 179 and would wrongly cut to two titles: count code points (Array.from(s).length).",
+      "now": "2026-10-06T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "home", "title": "home: pick up the 🎂 before the neighbours' street party", "owner": "me", "status": "open", "due_at": "2026-10-01", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0002", "kind": "promise", "project": "shop", "title": "shop: print the price cards for the new display shelves", "owner": "me", "status": "open", "due_at": "2026-10-02", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"},
+        {"id": "GS-0003", "kind": "promise", "project": "inkwell", "title": "inkwell: write the changelog for the next docs release", "owner": "me", "status": "open", "due_at": "2026-10-03", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T14:01:00Z", "finished_at": "2026-10-06T14:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001", "GS-0002", "GS-0003"]}
+        ]
+      },
+      "expect_bodies": ["3 open: home: pick up the 🎂 before the neighbours' street party · shop: print the price cards for the new display shelves · inkwell: write the changelog for the next docs release"]
+    },
+    {
+      "name": "dst-cdt-2026-10-30-1415z-is-0915",
+      "why": "Fri 10-30 is CDT (UTC-5): 14:15Z = 09:15 local, digest window open. A fixed UTC-6 offset would read 08:15 and send nothing.",
+      "now": "2026-10-30T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "shop", "title": "shop: fix the checkout button", "owner": "me", "status": "open", "due_at": "2026-10-30", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-29T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-29", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-29"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-30T14:01:00Z", "finished_at": "2026-10-30T14:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "digest", "dedup_key": "digest:2026-10-30", "item_ids": ["GS-0001"]}
+        ]
+      }
+    },
+    {
+      "name": "dst-cdt-2026-10-30-1715z-is-1215-window-closed",
+      "why": "17:15Z on a CDT day = 12:15 local: window closed. A fixed UTC-6 offset would read 11:15 and send.",
+      "now": "2026-10-30T17:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "shop", "title": "shop: fix the checkout button", "owner": "me", "status": "open", "due_at": "2026-10-30", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-29T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-29", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-29"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-30T17:01:00Z", "finished_at": "2026-10-30T17:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": []
+      }
+    },
+    {
+      "name": "dst-cst-2026-11-02-1515z-is-0915",
+      "why": "Mon 11-02 is CST (UTC-6) after the 11-01 fall-back: 15:15Z = 09:15 local.",
+      "now": "2026-11-02T15:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "shop", "title": "shop: winter opening hours start soon", "owner": "me", "status": "open", "due_at": "2026-11-02", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-11-01T15:15:30Z", "kind": "digest", "dedup_key": "digest:2026-11-01", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-11-01"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-11-02T15:01:00Z", "finished_at": "2026-11-02T15:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "digest", "dedup_key": "digest:2026-11-02", "item_ids": ["GS-0001"]}
+        ]
+      }
+    },
+    {
+      "name": "dst-cst-2026-11-02-1415z-is-0815-too-early",
+      "why": "14:15Z on a CST day = 08:15 local: too early. A fixed UTC-5 offset would read 09:15 and send.",
+      "now": "2026-11-02T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "shop", "title": "shop: winter opening hours start soon", "owner": "me", "status": "open", "due_at": "2026-11-02", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-11-01T15:15:30Z", "kind": "digest", "dedup_key": "digest:2026-11-01", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-11-01"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-11-02T14:01:00Z", "finished_at": "2026-11-02T14:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": []
+      }
+    },
+    {
+      "name": "dst-advance-is-24-elapsed-hours-not-yet",
+      "why": "Due Sun 11-01 10:00 local, which is CST after the fall-back: 16:00Z. due - 24h = 16:00Z Sat, which is 11:00 CDT, not 10:00. At Sat 10:15 CDT (15:15Z) the window is not open yet. Today's digest already went out (the item is T3).",
+      "now": "2026-10-31T15:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "shop", "title": "shop: winter opening hours start soon", "owner": "me", "status": "open", "due_at": "2026-11-01T10:00", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-31T14:15:20Z", "kind": "digest", "dedup_key": "digest:2026-10-31", "item_ids": ["GS-0001"], "ok": 1, "local_date": "2026-10-31"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-31T15:01:00Z", "finished_at": "2026-10-31T15:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": []
+      }
+    },
+    {
+      "name": "dst-advance-is-24-elapsed-hours-fires",
+      "why": "Sat 11:15 CDT (16:15Z): due - 24h = 16:00Z <= now < due 16:00Z Sun. The advance fires. The 09:15 digest carried GS-0001 at 14:15:20Z, before due - 24h (16:00Z), so it does not stand in for the advance.",
+      "now": "2026-10-31T16:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "shop", "title": "shop: winter opening hours start soon", "owner": "me", "status": "open", "due_at": "2026-11-01T10:00", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-31T14:15:20Z", "kind": "digest", "dedup_key": "digest:2026-10-31", "item_ids": ["GS-0001"], "ok": 1, "local_date": "2026-10-31"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-31T16:01:00Z", "finished_at": "2026-10-31T16:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "advance", "dedup_key": "advance:GS-0001", "item_ids": ["GS-0001"]}
+        ]
+      }
+    },
+    {
+      "name": "dst-gap-snooze-maps-on-the-pre-transition-offset-not-yet",
+      "why": "Sun 2026-03-08: Chicago skips from 02:00 CST to 03:00 CDT at 08:00Z, so the wall time 02:30 never happens. It maps on the pre-transition offset (CST, UTC-6), as fold=0 / timeutil does: 08:30Z. At 08:15Z (03:15 CDT, quiet hours) the snooze has not ended. The post-transition offset would give 07:30Z and reopen too early.",
+      "now": "2026-03-08T08:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "decision", "project": "shop", "title": "shop: decide on the footer layout", "owner": "me", "status": "snoozed", "due_at": null, "review_at": "2026-03-12", "snooze_until": "2026-03-08T02:30", "created_at": "2026-03-05T15:00:00Z"}
+      ],
+      "notifications": [],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-03-08T08:01:00Z", "finished_at": "2026-03-08T08:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": []
+      }
+    },
+    {
+      "name": "dst-gap-snooze-reopens-at-0830z",
+      "why": "Same snooze, 02:30 on 2026-03-08 = 08:30Z. At 08:30Z (03:30 CDT, quiet hours) snooze_until <= now: reopen lists GS-0001, and quiet hours send nothing.",
+      "now": "2026-03-08T08:30:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "decision", "project": "shop", "title": "shop: decide on the footer layout", "owner": "me", "status": "snoozed", "due_at": null, "review_at": "2026-03-12", "snooze_until": "2026-03-08T02:30", "created_at": "2026-03-05T15:00:00Z"}
+      ],
+      "notifications": [],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-03-08T08:16:00Z", "finished_at": "2026-03-08T08:18:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": ["GS-0001"],
+        "send": []
+      }
+    },
+    {
+      "name": "dst-fall-back-snooze-uses-the-earlier-instant",
+      "why": "Sun 2026-11-01: 01:00-01:59 happens twice (CDT, then CST from 07:00Z). An ambiguous wall time means its earlier instant: 01:30 = 06:30Z (CDT). At 06:45Z (01:45 CDT, the first pass, quiet hours) the snooze has ended: reopen. The later instant (07:30Z, CST) would not have reopened yet.",
+      "now": "2026-11-01T06:45:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "decision", "project": "shop", "title": "shop: decide on the footer layout", "owner": "me", "status": "snoozed", "due_at": null, "review_at": "2026-11-05", "snooze_until": "2026-11-01T01:30", "created_at": "2026-10-29T15:00:00Z"}
+      ],
+      "notifications": [],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-11-01T06:31:00Z", "finished_at": "2026-11-01T06:33:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": ["GS-0001"],
+        "send": []
+      }
+    },
+    {
+      "name": "now-with-utc-offset-and-fractional-seconds",
+      "why": "now is written with a -05:00 offset (= 14:15Z) and the other instants carry fractional seconds; the outcome is the plain due-today digest.",
+      "now": "2026-10-06T09:15:00-05:00",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": false},
+      "engines": ["py", "js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "shop", "title": "shop: order the new display shelves", "owner": "me", "status": "open", "due_at": "2026-10-06", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30.123Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"}
+      ],
+      "runs": [
+        {"run_id": "run-hb", "started_at": "2026-10-06T14:01:00.000Z", "finished_at": "2026-10-06T14:03:00.000Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"]}
+        ]
+      }
+    },
+    {
+      "name": "deadman-fires-1115-last-ok-0803",
+      "why": "11:15 local, inside [9, 22). The last ok run finished 08:03 (13:03Z), 3h12m ago > 3h, and no deadman:run-0803 row exists: one high-priority push, no items. Today's digest already went out.",
+      "now": "2026-10-06T16:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": true},
+      "engines": ["js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "shop", "title": "shop: order the new display shelves", "owner": "me", "status": "open", "due_at": "2026-10-06", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"},
+        {"id": 2, "sent_at": "2026-10-06T14:15:20Z", "kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"], "ok": 1, "local_date": "2026-10-06"}
+      ],
+      "runs": [
+        {"run_id": "run-0703", "started_at": "2026-10-06T12:01:00Z", "finished_at": "2026-10-06T12:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null},
+        {"run_id": "run-0803", "started_at": "2026-10-06T13:01:00Z", "finished_at": "2026-10-06T13:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "deadman", "dedup_key": "deadman:run-0803", "item_ids": []}
+        ]
+      }
+    },
+    {
+      "name": "deadman-not-yet-1015-last-ok-0803",
+      "why": "10:15 local: the last ok run is 2h12m old. No dead-man.",
+      "now": "2026-10-06T15:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": true},
+      "engines": ["js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "shop", "title": "shop: order the new display shelves", "owner": "me", "status": "open", "due_at": "2026-10-06", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"},
+        {"id": 2, "sent_at": "2026-10-06T14:15:20Z", "kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"], "ok": 1, "local_date": "2026-10-06"}
+      ],
+      "runs": [
+        {"run_id": "run-0703", "started_at": "2026-10-06T12:01:00Z", "finished_at": "2026-10-06T12:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null},
+        {"run_id": "run-0803", "started_at": "2026-10-06T13:01:00Z", "finished_at": "2026-10-06T13:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": []
+      }
+    },
+    {
+      "name": "deadman-exactly-3h-is-not-stale",
+      "why": "11:03 local (16:03Z): the last ok run finished exactly 3h ago. The rule is 'more than' 3h.",
+      "now": "2026-10-06T16:03:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": true},
+      "engines": ["js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "shop", "title": "shop: order the new display shelves", "owner": "me", "status": "open", "due_at": "2026-10-06", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"},
+        {"id": 2, "sent_at": "2026-10-06T14:15:20Z", "kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"], "ok": 1, "local_date": "2026-10-06"}
+      ],
+      "runs": [
+        {"run_id": "run-0803", "started_at": "2026-10-06T13:01:00Z", "finished_at": "2026-10-06T13:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": []
+      }
+    },
+    {
+      "name": "deadman-morning-grace-0815-last-ok-2302",
+      "why": "08:15 local: the last ok run finished 23:02 last night (9h13m ago) but hour 8 is before the dead-man window [9, 22): the 07:00 run has until 09:00. The digest window is not open either.",
+      "now": "2026-10-06T13:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": true},
+      "engines": ["js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "shop", "title": "shop: order the new display shelves", "owner": "me", "status": "open", "due_at": "2026-10-06", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"}
+      ],
+      "runs": [
+        {"run_id": "run-2302", "started_at": "2026-10-06T04:00:00Z", "finished_at": "2026-10-06T04:02:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": []
+      }
+    },
+    {
+      "name": "deadman-fires-0915-last-ok-2302-before-the-digest",
+      "why": "09:15 local: last ok run 23:02 (10h13m ago), so the dead-man fires. GS-0001 is due today, so the digest fires too. Order: dead-man, then digest; the budget has room for both.",
+      "now": "2026-10-06T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": true},
+      "engines": ["js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "shop", "title": "shop: order the new display shelves", "owner": "me", "status": "open", "due_at": "2026-10-06", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"}
+      ],
+      "runs": [
+        {"run_id": "run-2302", "started_at": "2026-10-06T04:00:00Z", "finished_at": "2026-10-06T04:02:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "deadman", "dedup_key": "deadman:run-2302", "item_ids": []},
+          {"kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"]}
+        ]
+      }
+    },
+    {
+      "name": "deadman-does-not-repeat-with-the-same-key",
+      "why": "12:15 local, still stale (4h12m), but deadman:run-0803 was sent at 11:15. No repeat until a new ok run changes the key.",
+      "now": "2026-10-06T17:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": true},
+      "engines": ["js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "shop", "title": "shop: order the new display shelves", "owner": "me", "status": "open", "due_at": "2026-10-06", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"},
+        {"id": 2, "sent_at": "2026-10-06T14:15:20Z", "kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"], "ok": 1, "local_date": "2026-10-06"},
+        {"id": 3, "sent_at": "2026-10-06T16:15:20Z", "kind": "deadman", "dedup_key": "deadman:run-0803", "item_ids": [], "ok": 1, "local_date": "2026-10-06"}
+      ],
+      "runs": [
+        {"run_id": "run-0803", "started_at": "2026-10-06T13:01:00Z", "finished_at": "2026-10-06T13:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": []
+      }
+    },
+    {
+      "name": "deadman-re-arms-after-a-new-ok-run",
+      "why": "A new ok run (run-1202) finished at 12:02 local, after the 11:15 dead-man for run-0803. By 16:15 it is 4h13m old: the key is now deadman:run-1202, which has not been sent. One slot left.",
+      "now": "2026-10-06T21:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": true},
+      "engines": ["js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "shop", "title": "shop: order the new display shelves", "owner": "me", "status": "open", "due_at": "2026-10-06", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"},
+        {"id": 2, "sent_at": "2026-10-06T14:15:20Z", "kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"], "ok": 1, "local_date": "2026-10-06"},
+        {"id": 3, "sent_at": "2026-10-06T16:15:20Z", "kind": "deadman", "dedup_key": "deadman:run-0803", "item_ids": [], "ok": 1, "local_date": "2026-10-06"}
+      ],
+      "runs": [
+        {"run_id": "run-0803", "started_at": "2026-10-06T13:01:00Z", "finished_at": "2026-10-06T13:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null},
+        {"run_id": "run-1202", "started_at": "2026-10-06T17:00:00Z", "finished_at": "2026-10-06T17:02:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "deadman", "dedup_key": "deadman:run-1202", "item_ids": []}
+        ]
+      }
+    },
+    {
+      "name": "deadman-last-ok-run-is-the-latest-finished-not-the-last-listed",
+      "why": "Runs are listed newest first. The last ok run is the one with the latest finished_at (run-1202), not the last row in the list.",
+      "now": "2026-10-06T21:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": true},
+      "engines": ["js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "shop", "title": "shop: order the new display shelves", "owner": "me", "status": "open", "due_at": "2026-10-06", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"},
+        {"id": 2, "sent_at": "2026-10-06T14:15:20Z", "kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"], "ok": 1, "local_date": "2026-10-06"},
+        {"id": 3, "sent_at": "2026-10-06T16:15:20Z", "kind": "deadman", "dedup_key": "deadman:run-0803", "item_ids": [], "ok": 1, "local_date": "2026-10-06"}
+      ],
+      "runs": [
+        {"run_id": "run-1202", "started_at": "2026-10-06T17:00:00Z", "finished_at": "2026-10-06T17:02:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null},
+        {"run_id": "run-0803", "started_at": "2026-10-06T13:01:00Z", "finished_at": "2026-10-06T13:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "deadman", "dedup_key": "deadman:run-1202", "item_ids": []}
+        ]
+      }
+    },
+    {
+      "name": "deadman-failed-runs-are-not-heartbeats",
+      "why": "Runs at 10:03 and 11:03 local reported ok = 0. Only ok = 1 counts, so the last ok run is still run-0803 (08:03), 3h12m old at 11:15: fire.",
+      "now": "2026-10-06T16:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": true},
+      "engines": ["js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "shop", "title": "shop: order the new display shelves", "owner": "me", "status": "open", "due_at": "2026-10-06", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"},
+        {"id": 2, "sent_at": "2026-10-06T14:15:20Z", "kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"], "ok": 1, "local_date": "2026-10-06"}
+      ],
+      "runs": [
+        {"run_id": "run-0803", "started_at": "2026-10-06T13:01:00Z", "finished_at": "2026-10-06T13:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null},
+        {"run_id": "run-1003", "started_at": "2026-10-06T15:01:00Z", "finished_at": "2026-10-06T15:03:00Z", "ok": 0, "sessions_scanned": 3, "items_added": 0, "error": "scan failed"},
+        {"run_id": "run-1103", "started_at": "2026-10-06T16:01:00Z", "finished_at": "2026-10-06T16:03:00Z", "ok": 0, "sessions_scanned": 3, "items_added": 0, "error": "scan failed"}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "deadman", "dedup_key": "deadman:run-0803", "item_ids": []}
+        ]
+      }
+    },
+    {
+      "name": "deadman-only-failed-runs-uses-key-none",
+      "why": "The Mac has reported, but only failed runs (ok = 0). With no ok run ever, the condition holds and the key is deadman:none. No items, so no digest.",
+      "now": "2026-10-06T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": true},
+      "engines": ["js"],
+      "items": [],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"}
+      ],
+      "runs": [
+        {"run_id": "run-0803", "started_at": "2026-10-06T13:01:00Z", "finished_at": "2026-10-06T13:03:00Z", "ok": 0, "sessions_scanned": 3, "items_added": 0, "error": "scan failed"}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "deadman", "dedup_key": "deadman:none", "item_ids": []}
+        ]
+      }
+    },
+    {
+      "name": "deadman-never-reported-uses-key-none",
+      "why": "No run has ever been reported: the condition holds and the key is deadman:none. No items, so no digest.",
+      "now": "2026-10-06T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": true},
+      "engines": ["js"],
+      "items": [],
+      "notifications": [],
+      "runs": [],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "deadman", "dedup_key": "deadman:none", "item_ids": []}
+        ]
+      }
+    },
+    {
+      "name": "deadman-none-does-not-repeat",
+      "why": "Still no runs, and deadman:none was sent at 09:15. Nothing until the first ok run arrives.",
+      "now": "2026-10-06T15:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": true},
+      "engines": ["js"],
+      "items": [],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-06T14:15:20Z", "kind": "deadman", "dedup_key": "deadman:none", "item_ids": [], "ok": 1, "local_date": "2026-10-06"}
+      ],
+      "runs": [],
+      "expect": {
+        "reopen": [],
+        "send": []
+      }
+    },
+    {
+      "name": "deadman-suppressed-in-quiet-hours",
+      "why": "22:30 local: the last ok run is 14h27m old, but quiet hours suppress everything (and 22 is outside [9, 22)).",
+      "now": "2026-10-07T03:30:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": true},
+      "engines": ["js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "shop", "title": "shop: order the new display shelves", "owner": "me", "status": "open", "due_at": "2026-10-06", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"},
+        {"id": 2, "sent_at": "2026-10-06T14:15:20Z", "kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"], "ok": 1, "local_date": "2026-10-06"}
+      ],
+      "runs": [
+        {"run_id": "run-0803", "started_at": "2026-10-06T13:01:00Z", "finished_at": "2026-10-06T13:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": []
+      }
+    },
+    {
+      "name": "deadman-fires-in-the-last-window-hour-2115",
+      "why": "21:15 local (02:15Z on 10-07): hour 21 is inside [9, 22). The last ok run (17:02 local) is 4h13m old. The local date is still 10-06.",
+      "now": "2026-10-07T02:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": true},
+      "engines": ["js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "shop", "title": "shop: order the new display shelves", "owner": "me", "status": "open", "due_at": "2026-10-06", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"},
+        {"id": 2, "sent_at": "2026-10-06T14:15:20Z", "kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"], "ok": 1, "local_date": "2026-10-06"}
+      ],
+      "runs": [
+        {"run_id": "run-1702", "started_at": "2026-10-06T22:00:00Z", "finished_at": "2026-10-06T22:02:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "deadman", "dedup_key": "deadman:run-1702", "item_ids": []}
+        ]
+      }
+    },
+    {
+      "name": "deadman-respects-the-budget",
+      "why": "11:15 local, stale, but three notifications already went out today. The dead-man is counted in the budget like any push.",
+      "now": "2026-10-06T16:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": true},
+      "engines": ["js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "shop", "title": "shop: order the new display shelves", "owner": "me", "status": "open", "due_at": "2026-10-06", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"},
+        {"id": 2, "sent_at": "2026-10-06T14:15:20Z", "kind": "digest", "dedup_key": "digest:2026-10-06", "item_ids": ["GS-0001"], "ok": 1, "local_date": "2026-10-06"},
+        {"id": 3, "sent_at": "2026-10-06T13:15:10Z", "kind": "advance", "dedup_key": "advance:GS-0007", "item_ids": ["GS-0007"], "ok": 1, "local_date": "2026-10-06"},
+        {"id": 4, "sent_at": "2026-10-06T13:15:11Z", "kind": "advance", "dedup_key": "advance:GS-0008", "item_ids": ["GS-0008"], "ok": 1, "local_date": "2026-10-06"}
+      ],
+      "runs": [
+        {"run_id": "run-0803", "started_at": "2026-10-06T13:01:00Z", "finished_at": "2026-10-06T13:03:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": []
+      }
+    },
+    {
+      "name": "deadman-takes-the-last-slot-before-the-digest",
+      "why": "09:15 local, two advance pushes this morning: one slot left. The dead-man comes first and takes it; the digest (GS-0001 due today) does not fit.",
+      "now": "2026-10-06T14:15:00Z",
+      "tz": "America/Chicago",
+      "cfg": {"digest_hour": 9, "quiet_start": 22, "quiet_end": 8, "daily_budget": 3, "deadman_hours": 3, "enable_deadman": true},
+      "engines": ["js"],
+      "items": [
+        {"id": "GS-0001", "kind": "promise", "project": "shop", "title": "shop: order the new display shelves", "owner": "me", "status": "open", "due_at": "2026-10-06", "review_at": null, "snooze_until": null, "created_at": "2026-10-01T15:00:00Z"}
+      ],
+      "notifications": [
+        {"id": 1, "sent_at": "2026-10-05T14:15:30Z", "kind": "digest", "dedup_key": "digest:2026-10-05", "item_ids": ["GS-0090"], "ok": 1, "local_date": "2026-10-05"},
+        {"id": 3, "sent_at": "2026-10-06T13:15:10Z", "kind": "advance", "dedup_key": "advance:GS-0007", "item_ids": ["GS-0007"], "ok": 1, "local_date": "2026-10-06"},
+        {"id": 4, "sent_at": "2026-10-06T13:15:11Z", "kind": "advance", "dedup_key": "advance:GS-0008", "item_ids": ["GS-0008"], "ok": 1, "local_date": "2026-10-06"}
+      ],
+      "runs": [
+        {"run_id": "run-2302", "started_at": "2026-10-06T04:00:00Z", "finished_at": "2026-10-06T04:02:00Z", "ok": 1, "sessions_scanned": 3, "items_added": 0, "error": null}
+      ],
+      "expect": {
+        "reopen": [],
+        "send": [
+          {"kind": "deadman", "dedup_key": "deadman:run-2302", "item_ids": []}
+        ]
+      }
+    }
+  ]
+}

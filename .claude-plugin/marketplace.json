@@ -1,0 +1,14 @@
+{
+  "name": "ghosted",
+  "owner": {
+    "name": "byndp"
+  },
+  "description": "Ghosted: the Claude Code sessions still waiting on you.",
+  "plugins": [
+    {
+      "name": "ghosted",
+      "source": "./",
+      "description": "Lists the Claude Code sessions still waiting on you and the command to pick each one back up. It runs on your computer only."
+    }
+  ]
+}

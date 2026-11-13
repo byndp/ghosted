@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Rendered by core/install.py (ghosted install, launchd component), which fills the placeholders
+     and validates the result with plistlib. Runs `ghosted run` at minute 2 of every hour of the
+     system clock; with GHOSTED_SCHEDULED=1, `ghosted run` skips the hours outside 07:00-23:59 in
+     the configured timezone (calendar entries, not StartInterval: launchd runs a missed calendar
+     job at wake, and drops StartInterval firings missed during sleep). -->
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>{{LABEL}}</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>{{PYTHON}}</string>
+		<string>{{LE}}</string>
+		<string>run</string>
+	</array>
+	<key>StartCalendarInterval</key>
+	<array>
+		<dict><key>Hour</key><integer>0</integer><key>Minute</key><integer>2</integer></dict>
+		<dict><key>Hour</key><integer>1</integer><key>Minute</key><integer>2</integer></dict>
+		<dict><key>Hour</key><integer>2</integer><key>Minute</key><integer>2</integer></dict>
+		<dict><key>Hour</key><integer>3</integer><key>Minute</key><integer>2</integer></dict>
+		<dict><key>Hour</key><integer>4</integer><key>Minute</key><integer>2</integer></dict>
+		<dict><key>Hour</key><integer>5</integer><key>Minute</key><integer>2</integer></dict>
+		<dict><key>Hour</key><integer>6</integer><key>Minute</key><integer>2</integer></dict>
+		<dict><key>Hour</key><integer>7</integer><key>Minute</key><integer>2</integer></dict>
+		<dict><key>Hour</key><integer>8</integer><key>Minute</key><integer>2</integer></dict>
+		<dict><key>Hour</key><integer>9</integer><key>Minute</key><integer>2</integer></dict>
+		<dict><key>Hour</key><integer>10</integer><key>Minute</key><integer>2</integer></dict>
+		<dict><key>Hour</key><integer>11</integer><key>Minute</key><integer>2</integer></dict>
+		<dict><key>Hour</key><integer>12</integer><key>Minute</key><integer>2</integer></dict>
+		<dict><key>Hour</key><integer>13</integer><key>Minute</key><integer>2</integer></dict>
+		<dict><key>Hour</key><integer>14</integer><key>Minute</key><integer>2</integer></dict>
+		<dict><key>Hour</key><integer>15</integer><key>Minute</key><integer>2</integer></dict>
+		<dict><key>Hour</key><integer>16</integer><key>Minute</key><integer>2</integer></dict>
+		<dict><key>Hour</key><integer>17</integer><key>Minute</key><integer>2</integer></dict>
+		<dict><key>Hour</key><integer>18</integer><key>Minute</key><integer>2</integer></dict>
+		<dict><key>Hour</key><integer>19</integer><key>Minute</key><integer>2</integer></dict>
+		<dict><key>Hour</key><integer>20</integer><key>Minute</key><integer>2</integer></dict>
+		<dict><key>Hour</key><integer>21</integer><key>Minute</key><integer>2</integer></dict>
+		<dict><key>Hour</key><integer>22</integer><key>Minute</key><integer>2</integer></dict>
+		<dict><key>Hour</key><integer>23</integer><key>Minute</key><integer>2</integer></dict>
+	</array>
+	<key>StandardOutPath</key>
+	<string>{{LOG}}</string>
+	<key>StandardErrorPath</key>
+	<string>{{LOG}}</string>
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>PATH</key>
+		<string>{{PATH}}</string>
+		<key>HOME</key>
+		<string>{{HOME}}</string>
+		<key>GHOSTED_SCHEDULED</key>
+		<string>1</string>{{EXTRA_ENV}}
+	</dict>
+	<key>RunAtLoad</key>
+	<false/>
+	<key>ProcessType</key>
+	<string>Background</string>
+</dict>
+</plist>

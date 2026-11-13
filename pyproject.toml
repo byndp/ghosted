@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61"]   # build time only; nothing is needed to run
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ghosted"
+version = "0.2.0"
+description = "Lists the Claude Code sessions still waiting on you, with the command to pick each back up."
+license = "MIT"
+requires-python = ">=3.9"
+dependencies = []  # stdlib only, by design
+
+[project.scripts]
+ghosted = "core.cli:main"
+
+# The packaging exists for one thing: trying Ghosted with one line and nothing installed
+# (`uvx --from git+https://github.com/byndp/ghosted ghosted report`, README). The plugin and a
+# clone are the ways to keep it: they run bin/ghosted, which `ghosted install` links from.
+[tool.setuptools]
+packages = ["core", "notify"]
+
+[tool.setuptools.package-data]
+core = ["hooks/*.json", "launchd/*.template", "skills/ghosted/SKILL.md"]

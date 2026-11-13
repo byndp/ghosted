@@ -1,0 +1,16 @@
+{
+  "name": "ghosted",
+  "version": "0.2.0",
+  "description": "Lists the Claude Code sessions still waiting on you (an unanswered question, a usage limit, a plan to approve), and the command to pick each one back up. Type /ghosted. It sends nothing to any server.",
+  "author": {
+    "name": "Studio 2133",
+    "url": "https://github.com/byndp"
+  },
+  "homepage": "https://github.com/byndp/ghosted",
+  "repository": "https://github.com/byndp/ghosted",
+  "documentationUrl": "https://github.com/byndp/ghosted/blob/main/docs/guide.md",
+  "supportUrl": "https://github.com/byndp/ghosted/issues",
+  "privacyPolicyUrl": "https://github.com/byndp/ghosted#privacy",
+  "license": "MIT",
+  "skills": "./core/skills/"
+}
